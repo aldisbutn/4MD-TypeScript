@@ -1045,3 +1045,150 @@ console.log(extractObjectNameSizeWeight({fn: 'Lisa', ln: 'Müller', age: 17, siz
 console.log(extractObjectNameSizeWeight({fn: 'Martin', ln: 'Harper', age: 26, email: 'martin.harper@test.de', weight: 102}));
 console.log(extractObjectNameSizeWeight({fn: 'Andrew', ln: 'Harper', age: 81, size: 175, weight: 71}));
 console.log(extractObjectNameSizeWeight({fn: 'Matthew', ln: 'Müller', age: 19, email: 'matthew@mueller.de'}));
+
+/*
+Task 60
+Write a function that takes an array of objects and a string as arguments
+Add a property with key 'continent' and value equal to the string to each of the objects
+Return the new array of objects
+Tip: try not to mutate the original array
+*/
+
+const addContinentToObject = (a: { [key: string]: unknown }[], continent: string) => a.map(obj => ({...obj, continent}));
+
+console.log(addContinentToObject([{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia'));
+console.log(addContinentToObject([{ city: 'Stockholm', country: 'Sweden' }, { city: 'Paris', country: 'France' }], 'Europe'));
+
+/*
+Task 61
+Write a function that takes an array of numbers as argument
+Convert the array to an object
+It should have a key for each unique value of the array
+The corresponding object value should be the number of times the key occurs within the array
+*/
+
+const convertArrayToObjectAddKeyOccernce = (a: number[]) => {
+    const newArray: Record<string, number> = {};
+
+    a.forEach(num => {
+        newArray[num] = (newArray[num] || 0) + 1;
+    });
+
+    return newArray;
+};
+
+console.log(convertArrayToObjectAddKeyOccernce([1,2,2,3]));
+console.log(convertArrayToObjectAddKeyOccernce([9,9,9,99]));
+console.log(convertArrayToObjectAddKeyOccernce([4,3,2,1]));
+
+/*
+Task 62
+Write a function that takes two date instances as arguments
+It should return true if the dates are equal
+It should return false otherwise
+*/
+
+const checkDatesAreEqual = (a: Date,b: Date) => a.getTime() === b.getTime();
+
+console.log(checkDatesAreEqual(new Date('2000/01/01 08:00:00'), new Date('2000/01/01 08:45:00')));
+console.log(checkDatesAreEqual(new Date('2000/01/01 08:00:00'), new Date('2000/01/01 08:00:00')));
+console.log(checkDatesAreEqual(new Date('2001/01/01 08:00:00'), new Date('2000/01/01 08:00:00')));
+
+/*
+Task 63
+Write a function that takes two date instances as argument
+It should return the number of days that lies between those dates
+*/
+
+const returnDaysBetweenDates = (a: Date, b: Date) => Math.abs((a.getTime() - b.getTime()) / (1000 * 60 * 60 * 24));
+
+console.log(returnDaysBetweenDates(new Date('2020-06-11'), new Date('2020-06-01')));
+console.log(returnDaysBetweenDates(new Date('2000-01-01'), new Date('2020-06-01')));
+
+/*
+Task 64
+Write a function that takes two date instances as argument
+It should return true if they fall on the exact same day
+It should return false otherwise
+*/
+
+const checkIfDatesAreSameDay = (a: Date, b: Date) => a.getDay() === b.getDay();
+
+console.log(checkIfDatesAreSameDay(new Date('2000/01/01'), new Date('2000/01/01')));
+console.log(checkIfDatesAreSameDay(new Date('2000/01/01'), new Date('2000/01/02')));
+console.log(checkIfDatesAreSameDay(new Date('2001/01/01'), new Date('2000/01/01')));
+console.log(checkIfDatesAreSameDay(new Date('2000/11/01'), new Date('2000/01/01')));
+
+/*
+Task 65
+Write a function that takes two number arrays as parameters 
+and return an array which contains elements from both 
+arrays
+*/
+
+const combineArraysIntoOne = (a: number[], b: number[]) => {
+    const newArray = [...a, ...b];
+    return newArray;
+}
+
+console.log(combineArraysIntoOne([1, 2], [3, 4]));
+console.log(combineArraysIntoOne([1, 2], [3, 4, 5, 6]));
+
+/*
+Task 66
+Write a function that takes an array and a string as parameters 
+and return an array which contains all elements from the given array
+and the given string as the last element
+*/
+
+const addStringToArrayLast = (a: string[], b: string) => {
+    const newArray = [...a];
+    newArray.push(b);
+    return newArray;
+};
+
+console.log(addStringToArrayLast(['Apple', 'Orange', 'Banana'], 'Kiwi'));
+
+/*
+Task 67
+Write a function that takes an array and a string as parameters 
+and return an array which contains all elements from the given array
+and the given string as the first element
+*/
+
+const addStringToArrayFirst = (a: string[], b: string) => {
+    const newArray = [...a];
+    newArray.unshift(b);
+    return newArray;
+};
+
+console.log(addStringToArrayFirst(['Apple', 'Orange', 'Banana'], 'Kiwi'));
+
+/*
+Task 68
+Write a function that takes two objects as parameters 
+and return an object which contains properties from both 
+objects
+*/
+
+const twoObjectsToOne = (a: Record<string, unknown>, b: Record<string, unknown>) => {
+    const newObject = {...a, ...b};
+    return newObject;
+};
+
+console.log(twoObjectsToOne({ a:1, b:2 }, { c:3, d:4 }));
+console.log(twoObjectsToOne({ a:1, b:2 }, { c:3, d:4, e:5, f:6 }));
+
+/*
+Task 69
+Write a function that takes an object and a string as parameters 
+and return an object which contains properties from the given object
+and a new property favoriteMovie with the value equal to the given string
+*/
+
+type MyObject = { [key: string]: unknown };
+
+const addStringToObject = (a: MyObject[], favoriteMovie: string) => a.map(obj => ({...obj, favoriteMovie}));
+
+console.log(addStringToObject([{ eyeColor: 'green', age: 10 }], 'Garfield'));
+console.log(addStringToObject([{ eyeColor: 'blue', age: 15 }], 'Twilight'));
